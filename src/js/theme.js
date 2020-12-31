@@ -566,8 +566,8 @@ class Theme {
                 const typeone = (i) => {
                     const id = group[i];
                     const instance = new TypeIt(`#${id}`, {
-                        strings: this.data[id],
                         speed: speed,
+                        deleteSpeed: speed,
                         lifeLike: true,
                         cursorSpeed: cursorSpeed,
                         cursorChar: cursorChar,
@@ -582,7 +582,11 @@ class Theme {
                             instance.destroy();
                             typeone(i + 1);
                         },
-                    }).go();
+                    })
+                        .type(typeitConfig.type)
+                        .delete(typeitConfig.deleteNum)
+                        .type(typeitConfig.retype)
+                        .go();
                 };
                 typeone(0);
             });
